@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MK Nexus Calculators Suite</title>
+    <meta name="description" content="Professional tools for compound interest calculations, freelancer time tracking, and unit conversions.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="logo.png">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section with Branding -->
+        <header class="header">
+            <div class="brand-section">
+                <div class="brand-logo">
+                    <img src="logo.png" alt="MK Nexus Logo" class="logo-image" onerror="this.style.display='none'; document.querySelector('.logo-text').style.display='flex';">
+                    <span class="logo-text">MK</span>
+                </div>
+                <div class="brand-info">
+                    <h1 class="header-title">MK Nexus Calculators Suite</h1>
+                    <p class="header-subtitle">Professional Tools for Everyday Calculations</p>
+                    <p class="brand-tagline">by MK Nexus</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="interest-calc">
+                <span class="tab-icon">💰</span>
+                <span class="tab-text">Compound Interest</span>
+            </button>
+            <button class="tab-btn" data-tab="time-calc">
+                <span class="tab-icon">⏱️</span>
+                <span class="tab-text">Freelancer Time</span>
+            </button>
+            <button class="tab-btn" data-tab="unit-converter">
+                <span class="tab-icon">📏</span>
+                <span class="tab-text">Unit Converter</span>
+            </button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Module A: Compound Interest Calculator -->
+            <section id="interest-calc" class="tab-content active">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Compound Interest Calculator</h2>
+                        <p>Calculate how your investments grow over time with compound interest.</p>
+                    </div>
+                    
+                    <form id="interest-form" class="form">
+                        <div class="form-group">
+                            <label for="principal">Principal Amount ($)</label>
+                            <input type="number" id="principal" min="0" step="0.01" placeholder="Enter principal amount" value="1000" required>
+                            <span class="input-hint">The initial amount of money</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interest-rate">Annual Interest Rate (%)</label>
+                            <input type="number" id="interest-rate" min="0" step="0.01" placeholder="Enter annual rate" value="5" required>
+                            <span class="input-hint">The yearly interest rate percentage</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="time">Time (Years)</label>
+                            <input type="number" id="time" min="0" step="0.1" placeholder="Enter time in years" value="10" required>
+                            <span class="input-hint">Investment duration in years</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="frequency">Compounding Frequency</label>
+                            <select id="frequency" required>
+                                <option value="1">Yearly</option>
+                                <option value="12" selected>Monthly</option>
+                                <option value="4">Quarterly</option>
+                                <option value="365">Daily</option>
+                            </select>
+                            <span class="input-hint">How often interest is calculated</span>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">
+                            <span class="btn-icon">📈</span>
+                            Calculate Interest
+                        </button>
+                    </form>
+                    
+                    <div id="interest-result" class="result hidden">
+                        <div class="result-header">
+                            <h3>Investment Results</h3>
+                            <button class="copy-btn" data-target="interest-result-content" aria-label="Copy results">
+                                <span class="copy-icon">📋</span>
+                            </button>
+                        </div>
+                        <div id="interest-result-content" class="result-grid">
+                            <div class="result-item">
+                                <span class="result-label">Principal Amount:</span>
+                                <span id="principal-display" class="result-value">$0.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Interest Earned:</span>
+                                <span id="interest-earned" class="result-value highlight">$0.00</span>
+                            </div>
+                            <div class="result-item total">
+                                <span class="result-label">Total Amount:</span>
+                                <span id="total-amount" class="result-value total">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Module B: Freelancer Time Calculator -->
+            <section id="time-calc" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Freelancer Time Calculator</h2>
+                        <p>Calculate your billable hours and total amount based on time worked.</p>
+                    </div>
+                    
+                    <form id="time-form" class="form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="start-time">Start Time</label>
+                                <input type="time" id="start-time" value="09:00" required>
+                                <span class="input-hint">When you started working</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="end-time">End Time</label>
+                                <input type="time" id="end-time" value="17:00" required>
+                                <span class="input-hint">When you finished working</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hourly-rate">Hourly Rate ($)</label>
+                            <input type="number" id="hourly-rate" min="0" step="0.01" placeholder="Enter hourly rate" value="50" required>
+                            <span class="input-hint">Your charge per hour</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="break-minutes">Break Time (Minutes)</label>
+                            <input type="number" id="break-minutes" min="0" step="1" value="30" placeholder="Optional">
+                            <span class="input-hint">Deductible break time in minutes</span>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">
+                            <span class="btn-icon">⏱️</span>
+                            Calculate Earnings
+                        </button>
+                    </form>
+                    
+                    <div id="time-result" class="result hidden">
+                        <div class="result-header">
+                            <h3>Billing Summary</h3>
+                            <button class="copy-btn" data-target="time-result-content" aria-label="Copy results">
+                                <span class="copy-icon">📋</span>
+                            </button>
+                        </div>
+                        <div id="time-result-content" class="result-grid">
+                            <div class="result-item">
+                                <span class="result-label">Total Hours:</span>
+                                <span id="total-hours" class="result-value">0.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Break Time:</span>
+                                <span id="break-display" class="result-value">0.00 hrs</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Billable Hours:</span>
+                                <span id="billable-hours" class="result-value highlight">0.00</span>
+                            </div>
+                            <div class="result-item total">
+                                <span class="result-label">Total Amount:</span>
+                                <span id="total-bill" class="result-value total">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Module C: Smart Unit Converter -->
+            <section id="unit-converter" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Smart Unit Converter</h2>
+                        <p>Convert between different units of measurement instantly.</p>
+                    </div>
+                    
+                    <form id="converter-form" class="form">
+                        <div class="form-group">
+                            <label for="value">Value to Convert</label>
+                            <input type="number" id="value" step="any" placeholder="Enter value" value="100" required>
+                            <span class="input-hint">The numerical value you want to convert</span>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="category">Conversion Category</label>
+                                <select id="category" required>
+                                    <option value="">Select category</option>
+                                    <option value="length" selected>Length</option>
+                                    <option value="weight">Weight</option>
+                                    <option value="temperature">Temperature</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="from-unit">From Unit</label>
+                                <select id="from-unit" required>
+                                    <option value="meters" selected>Meters</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="to-unit">To Unit</label>
+                                <select id="to-unit" required>
+                                    <option value="feet" selected>Feet</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary" id="convert-btn">
+                            <span class="btn-icon">🔄</span>
+                            Convert Units
+                        </button>
+                    </form>
+                    
+                    <div id="converter-result" class="result hidden">
+                        <div class="result-header">
+                            <h3>Conversion Result</h3>
+                            <button class="copy-btn" data-target="converter-result-content" aria-label="Copy results">
+                                <span class="copy-icon">📋</span>
+                            </button>
+                        </div>
+                        <div id="converter-result-content" class="result-item large">
+                            <span id="original-value" class="original-value">0</span>
+                            <span id="from-unit-display" class="unit-display">unit</span>
+                            <span class="equals">=</span>
+                            <span id="converted-value" class="converted-value">0</span>
+                            <span id="to-unit-display" class="unit-display">unit</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer with Developer Info -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="developer-info">
+                    Developed by <span class="developer-name">Muhammad Maqsood</span> | 
+                    <span class="brand-name">MK Nexus</span> | 
+                    <span class="year">© 2025</span>
+                </p>
+                <p class="footer-note">Professional utility tools for precise calculations</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
